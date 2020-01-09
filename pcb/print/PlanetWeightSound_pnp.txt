@@ -4,7 +4,7 @@
 *eMail=
 *
 *Project=PlanetWeightSound
-*Date=21:57:30
+*Date=10:39:00
 *CreatedBy=Fritzing 0.9.4.2019-12-01.CD-498-0-a1ffcea
 *
 *
@@ -13,17 +13,18 @@
 *Rotation in degree (0-360, math. pos.)
 *
 *No;Value;Package;X;Y;Rotation;Side;Name
-1;;THT;9.41927;-10.7535;0;Bottom;Speaker
-2;;THT;46.8681;-53.8036;0;Bottom;LED 3
-3;10;THT;9.68477;-23.1283;0;Bottom;R1
-4;;THT;49.0532;-7.80392;0;Bottom;Power
-5;;;25.519;-35.0927;90;Bottom;Arduino Micro
+1;;THT;35.5544;-53.7457;0;Bottom;LED 2
+2;;THT;8.91079;-7.70715;0;Bottom;Speaker
+3;;THT;49.0531;-7.80395;0;Bottom;Power
+4;;;30.1022;-11.2058;0;Bottom;DFRobot DFPlayer Mini1
+5;;;56.2184;-59.6301;0;Bottom;Hole2
 6;;;2.94035;-59.5864;0;Bottom;Hole3
-7;;THT;55.646;-30.659;0;Bottom;Load Cell
-8;;THT;23.7239;-53.8239;0;Bottom;LED 1
-9;;;30.1022;-11.2058;0;Bottom;DFRobot DFPlayer Mini1
-10;;THT;35.5544;-53.7457;0;Bottom;LED 2
-11;;THT;12.2096;-53.8375;0;Bottom;LED 0
-12;;;2.94035;-3.35981;0;Bottom;Hole4
-13;;;56.2264;-3.35981;0;Bottom;Hole1
-14;;;56.2183;-59.6301;0;Bottom;Hole2
+7;;THT;46.8682;-53.8036;0;Bottom;LED 3
+8;;;56.2263;-3.35989;0;Bottom;Hole1
+9;10;THT;10.1951;-16.7998;0;Bottom;R1
+10;;THT;55.4505;-33.0586;0;Bottom;Load Cell
+11;;THT;13.0102;-22.1909;0;Bottom;Vol
+12;;;25.6212;-36.7259;90;Bottom;Arduino Micro
+13;;THT;23.724;-53.8239;0;Bottom;LED 1
+14;;;2.94035;-3.35989;0;Bottom;Hole4
+15;;THT;12.2096;-53.8375;0;Bottom;LED 0
