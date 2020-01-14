@@ -12,17 +12,16 @@
 class SoundPlayer
 {
 public:
-	SoundPlayer(int pin, int tollerance);
+    SoundPlayer(int pin, int tollerance);
     void initialize(void);
     void volume(uint8_t volume);
-    void PlaySound(void);
+    void PlaySound(int value = 1);
     void StopSound(void);
-	virtual ~SoundPlayer();
+    void update(void);
+    virtual ~SoundPlayer();
 
 private:
-	int pin;
-	int old_value;
-	int tolerance;
+    int pin;
     int fileCount;
     bool soundPlaying;
     void printDetail(uint8_t type, int value);

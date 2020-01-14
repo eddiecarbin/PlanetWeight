@@ -7,7 +7,6 @@
 
 SoftwareSerial mySoftwareSerial(10, 11); // RX, TX
 
-
 int fileCount = 0;
 bool soundPlaying = false;
 int soundIdx = 1;
@@ -36,20 +35,47 @@ void SoundPlayer::initialize()
     }
     Serial.println(F("DFPlayer Mini online."));
 
-    myDFPlayer.volume(15); //Set volume value. From 0 to 30
+    myDFPlayer.volume(30); //Set volume value. From 0 to 30
 
     fileCount = myDFPlayer.readFileCounts();
+    // myDFPlayer.play(1); //Play the first mp3
 
     Serial.print("file count = ");
     Serial.println(fileCount);
 }
 
+void SoundPlayer::update()
+{
+    /*
+  if (myDFPlayer.available() && soundPlaying == true)
+  {
 
+    if (myDFPlayer.readType() == DFPlayerPlayFinished && playCount < fileCount)
+    {
 
-void SoundPlayer::PlaySound()
+      delay(500);
+      myDFPlayer.next();
+      soundIdx++;
+
+      if (soundIdx > fileCount)
+      {
+        soundIdx = 1;
+      }
+      Serial.print("count = ");
+      Serial.println(playCount);
+
+      playCount += 1;
+    }
+    else
+    {
+    }
+    */
+}
+
+void SoundPlayer::PlaySound( int value = 1)
 {
     soundPlaying = true;
-    myDFPlayer.play(0); //Play the first mp3
+    myDFPlayer.play(value); //Play the first mp3
 }
 
 void SoundPlayer::StopSound()
@@ -58,6 +84,10 @@ void SoundPlayer::StopSound()
     myDFPlayer.stop();
 }
 
+void SoundPlayer::volume(uint8_t value)
+{
+    myDFPlayer.volume(value);
+}
 
 void SoundPlayer::printDetail(uint8_t type, int value)
 {
