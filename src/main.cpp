@@ -87,23 +87,8 @@ void OnIdleWaitForUserExit()
 
 void OnDisplayUserEnter()
 {
-
-  moon = earth * 0.17;
-  mars = earth * 0.38;
-  jupiter = earth * 2.32;
-
   soundPlayer.PlaySound(1);
-
-  matrix01.print(earth);
-  matrix01.writeDisplay();
-  matrix02.print(moon);
-  matrix02.writeDisplay();
-  matrix03.print(mars);
-  matrix03.writeDisplay();
-  matrix04.print(jupiter);
-  matrix04.writeDisplay();
 }
-
 
 void OnDisplayUserUpdate()
 {
