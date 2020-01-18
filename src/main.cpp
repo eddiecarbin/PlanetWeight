@@ -39,10 +39,10 @@ HX711 scale;
 State StateDoNothing(NULL, NULL, NULL);
 Fsm fsm(&StateDoNothing);
 //
-long map2(long x, long in_min, long in_max, long out_min, long out_max)
+/* long map2(long x, long in_min, long in_max, long out_min, long out_max)
 {
   return (x - in_min) * (out_max - out_min + 1) / (in_max - in_min + 1) + out_min;
-}
+} */
 
 void OnIdleWaitForUserEnter()
 {
@@ -65,6 +65,7 @@ void OnIdleWaitForUserUpdate()
   {
     scale.set_scale(calibration_factor);
     earth = abs(scale.get_units());
+
     if (earth > minWeight)
       fsm.trigger(GO_TO_DISPLAY_WEIGHT);
     else
@@ -72,7 +73,7 @@ void OnIdleWaitForUserUpdate()
   }
   else
   {
-    Serial.println("HX711 not found.");
+    //Serial.println("HX711 not found.");
   }
 }
 
@@ -123,6 +124,9 @@ void setup()
   // put your setup code here, to run once:
 
   Serial.begin(9600);
+
+  delay(3000);
+
   fsm.add_transition(&StateIdleWaitForUser, &StateOnDisplayUser,
                      GO_TO_DISPLAY_WEIGHT, NULL);
   fsm.add_transition(&StateOnDisplayUser, &StateIdleWaitForUser,
@@ -150,8 +154,8 @@ void loop()
   if (volumePot.hasUpdated())
   {
     //Serial.println(speedPotentiometer.getValue());
-    long volume = map2(volumePot.getValue(), 0, 880, 0, 30);
-    Serial.println(volume);
+    /* long volume = map2(volumePot.getValue(), 0, 880, 0, 30);
+    Serial.println(volume); */
     //soundPlayer.volume(volume);
   }
 
