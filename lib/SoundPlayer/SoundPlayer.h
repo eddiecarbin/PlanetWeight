@@ -15,7 +15,6 @@ public:
     SoundPlayer(int pin, int tollerance);
     void initialize(void);
     void volume(uint8_t volume);
-    bool isPlaying();
     void PlaySound(int value = 1);
     void StopSound(void);
     void update(void);

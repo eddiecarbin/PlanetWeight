@@ -4,7 +4,6 @@
 #include "SoundPlayer.h"
 #include "DFRobotDFPlayerMini.h"
 #include "SoftwareSerial.h"
-#include "EventManager.h"
 
 SoftwareSerial mySoftwareSerial(10, 11); // RX, TX
 
@@ -20,6 +19,7 @@ DFRobotDFPlayerMini myDFPlayer;
 
 void SoundPlayer::initialize()
 {
+
     mySoftwareSerial.begin(9600);
     Serial.println();
     Serial.println(F("DFRobot DFPlayer Mini Demo"));
@@ -46,24 +46,33 @@ void SoundPlayer::initialize()
 
 void SoundPlayer::update()
 {
+    /*
+  if (myDFPlayer.available() && soundPlaying == true)
+  {
 
-    if (myDFPlayer.available() && soundPlaying == true)
+    if (myDFPlayer.readType() == DFPlayerPlayFinished && playCount < fileCount)
     {
 
-        if (myDFPlayer.readType() == DFPlayerPlayFinished)
-        {
-            soundPlaying = false;
-            Serial.println("sound complete");
-        }
+      delay(500);
+      myDFPlayer.next();
+      soundIdx++;
+
+      if (soundIdx > fileCount)
+      {
+        soundIdx = 1;
+      }
+      Serial.print("count = ");
+      Serial.println(playCount);
+
+      playCount += 1;
     }
+    else
+    {
+    }
+    */
 }
 
-bool SoundPlayer::isPlaying()
-{
-    return soundPlaying;
-}
-
-void SoundPlayer::PlaySound(int value = 1)
+void SoundPlayer::PlaySound( int value = 1)
 {
     soundPlaying = true;
     myDFPlayer.play(value); //Play the first mp3
