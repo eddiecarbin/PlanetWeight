@@ -34,13 +34,12 @@ Adafruit_7segment matrix04 = Adafruit_7segment();
 
 const long minWeight = 30;
 
-const int MOON_F = 0.17;
-const int MARS_F = 0.38;
-const int JUPITER_F = 2.32;
+const double MOON_F = 0.17;
+const double MARS_F = 0.38;
+const double JUPITER_F = 2.32;
 
-long sum = 0;
 int readIndex = 0;
-const int numReadings = 7;
+const int numReadings = 5;
 unsigned long _lastCheck = 0;
 float readings[numReadings]; // the readings from the analog
 float total = 0;             // the running total
@@ -52,20 +51,16 @@ HX711 scale;
 State StateDoNothing(NULL, NULL, NULL);
 Fsm fsm(&StateDoNothing);
 //
-/* long map2(long x, long in_min, long in_max, long out_min, long out_max)
-{
-  return (x - in_min) * (out_max - out_min + 1) / (in_max - in_min + 1) + out_min;
-} */
 
 void DisplayWeight(int value)
 {
-  matrix01.print(value);
+  matrix01.print(int(value));
   matrix01.writeDisplay();
-  matrix02.print(value * MOON_F);
+  matrix02.print(int(value * MOON_F));
   matrix02.writeDisplay();
-  matrix03.print(value * MARS_F);
+  matrix03.print(int(value * MARS_F));
   matrix03.writeDisplay();
-  matrix04.print(value * JUPITER_F);
+  matrix04.print(int(value * JUPITER_F));
   matrix04.writeDisplay();
 }
 
@@ -100,7 +95,6 @@ void OnIdleWaitForUserUpdate()
 
 void OnCalculateWeightEnter()
 {
-  sum = 0;
   readIndex = 0;
   soundPlayer.PlaySound(1);
   _lastCheck = 0;
@@ -108,7 +102,7 @@ void OnCalculateWeightEnter()
 
 void OnCalculateWeightUpdate()
 {
-  // scale.set_scale(calibration_factor);
+  scale.set_scale(calibration_factor);
 
   total -= readings[readIndex];
   // read from the sensor:
@@ -143,9 +137,10 @@ void OnCalculateWeightUpdate()
   unsigned long t = millis();
   if (t - _lastCheck > 50)
   {
-    DisplayWeight(average);
     _lastCheck = t;
   }
+
+  DisplayWeight(average);
 
   if (readValue < minWeight)
   {
