@@ -58,9 +58,9 @@ void DisplayWeight(int value)
   matrix01.writeDisplay();
   matrix02.print(int(value * MOON_F));
   matrix02.writeDisplay();
-  matrix03.print(int(value * MARS_F));
+  matrix03.print(int(value * JUPITER_F));
   matrix03.writeDisplay();
-  matrix04.print(int(value * JUPITER_F));
+  matrix04.print(int(value * MARS_F));
   matrix04.writeDisplay();
 }
 
@@ -75,9 +75,12 @@ void OnIdleWaitForUserUpdate()
 {
   if (scale.is_ready())
   {
-    // scale.set_scale(calibration_factor);
+    // 
+    
+    scale.set_scale(calibration_factor);
     readValue = abs(scale.get_units());
 
+    Serial.println(readValue);
     if (readValue > minWeight)
       fsm.trigger(GO_TO_CALCULATE_WEIGHT);
     else
@@ -154,7 +157,6 @@ State StateCalculateWeight(&OnCalculateWeightEnter, &OnCalculateWeightUpdate, NU
 
 void setup()
 {
-  // put your setup code here, to run once:
 
   Serial.begin(9600);
 
